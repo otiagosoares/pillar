@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+*{
+	box-sizing: border-box;
+}
+html, body{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	background-color: #dfe6e9;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+.loader-page{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	bottom: 0;
+}
+.navbar-dark{
+  background: #4a5f6b !important
+}
+.wrapper{
+	padding: 0px 0 30px 0;
+}
+.input{
+    border: 0;
+    height: 60px;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    color: #636e72;
+	background-color: #dfe6e9;
+	padding: 0 20px;
+}
+.input:focus{
+	background-color: #b2bec3;
+	
+}
+.button{
+	height: 60px;
+	width: 100%;
+	border: 0;
+	border-radius: 8px;
+	font-weight: 500;
+	transition: 0.3s;
+	text-transform: uppercase;
+	margin-bottom: 40px;
+}
+.button-submit{
+	background-color: #00b894;
+	color: #fff
+}
+.button-submit:hover{
+	background-color: #00cec9;
+}
+.alert{
+	width: 100% !important; 
+	color: #fff
+}
+.alert-error{
+	background-color: transparent ;
+	color: #d63031;
+	border: 1px solid #d63031;
+}
+
+/*
+*	LOADER PAGE
+*/
+
+.loader {
+	width:50px;
+	height:50px;
+	display:inline-block;
+	padding:0px;
+	text-align:left;
+ }
+ .loader span {
+	position:absolute;
+	display:inline-block;
+	width: 80px;
+	height:80px;
+	border-radius:100%;
+	background:rgba(129, 236, 236,1.0);
+	-webkit-animation:loader 1.5s linear infinite;
+	animation:loader 1.5s linear infinite;
+ }
+ .loader span:last-child {
+	animation-delay:-0.9s;
+	-webkit-animation-delay:-0.9s;
+ }
+ @keyframes loader {
+	0% {transform: scale(0, 0);opacity:0.8;}
+	100% {transform: scale(1, 1);opacity:0;}
+ }
+ @-webkit-keyframes loader {
+	0% {-webkit-transform: scale(0, 0);opacity:0.8;}
+	100% {-webkit-transform: scale(1, 1);opacity:0;}
+ }
