@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Router, Route, Switch, Redirect } from 'react-router-dom'
 
-import { isAuthenticated } from './auth'
+import { isAuthenticated } from './services/auth';
 
 //import pages
 const Login = lazy((dataUser) => import('./pages/login'));
@@ -39,9 +39,9 @@ function  Routes(){
 				    </div>
                     }>
                     <Switch>
-                        <Route exact path="/" component={Dashboard}/>
+                        <PrivateRouter exact path="/" component={Dashboard}/>
                         <PrivateRouter path="/cell/create" component={CellCreate}/>
-                        <PrivateRouter path="/members/create" component={MemberCreate}/>
+                        <PrivateRouter path="/members/create" role='Leader' component={MemberCreate}/>
 
                         <Route path='/login' component={ Login } />
 

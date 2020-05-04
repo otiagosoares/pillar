@@ -1,39 +1,40 @@
-import React, { useState} from 'react'
-import {Redirect } from 'react-router-dom'
+import React, { useState} from 'react';
+import {Redirect } from 'react-router-dom';
 
-import { validateEmail } from '../../helpers/validateHelper'
-import api from '../../services/api'
+import { validateEmail } from '../../helpers/validateHelper';
+import api from '../../services/api';
+import { login } from '../../services/auth';
 
-import Loader from '../../components/loader'
-import {FiUsers, FiLock} from 'react-icons/fi'
-import './style.css'
+import Loader from '../../components/loader';
+import {FiUsers, FiLock} from 'react-icons/fi';
+import './style.css';
 
 export default function Login(){
 
-	const displayName = 'Login - Pillar'
-	document.title = displayName
+	const displayName = 'Login - Pillar';
+	document.title = displayName;
 
-	const [ error, setError ] = useState({message: undefined})
-	const [ loader, setLoader ] = useState(false)
-	const [ email, setEmail ] = useState('')
-	const [ password, setPassword ] = useState('')
-	const [ redirect, setRedirect ] = useState(false)
+	const [ error, setError ] = useState({message: undefined});
+	const [ loader, setLoader ] = useState(false);
+	const [ email, setEmail ] = useState('');
+	const [ password, setPassword ] = useState('');
+	const [ redirect, setRedirect ] = useState(false);
 
 	const handleSubmit = (event) =>{
-		event.preventDefault()
-		var hasError = false
-		setLoader(true)
+		event.preventDefault();
+		var hasError = false;
+		setLoader(true);
 		
 		if(!email || !password ){
-			setError({ message: 'Preencha email e senha.'})
-			hasError = true
-			setLoader(false)
+			setError({ message: 'Preencha email e senha.'});
+			hasError = true;
+			setLoader(false);
 		}
 
 		if(!validateEmail(email)){
-			setError({ message: 'Preencha um Email valido.'})
-			hasError = true
-			setLoader(false)
+			setError({ message: 'Preencha um Email valido.'});
+			hasError = true;
+			setLoader(false);
 		}
 
 		if(error.message == undefined || !hasError){
@@ -47,32 +48,26 @@ export default function Login(){
 
 				if(result.data.error || result.data.auth == false){
 
-					console.log(result.data)
-					setError({message : result.data.error})
-					setLoader(false)
+					console.log(result.data);
+					setError({message : result.data.error});
+					setLoader(false);
 	
 				}else{
 					// gravar TOKEN no localStorage e Cookies				
-					localStorage.setItem('@pillar-web/token', result.data.token)
-					console.log(result.data)
-					setRedirect(true)
+					login(result.data.token);
+					setRedirect(true);
 				}
-				//console.log(result.status)
 			}).finally(()=>{
 
-				setLoader(false)
-
-
+				setLoader(false);
 			}).catch(err =>{
-
-				console.error({'Erro': err})
-				setError({message: 'Erro ao Processar sua solicitação, favor contatar o admnistrador. Erro: ' + err})
+				console.error({'Erro': err});
+				setError({message: 'OOps... Erro ao Processar sua solicitação, favor contatar o admnistrador. Erro: ' + err});
 
 			})
 			
 		}
 	}
-
 
 	if(redirect){
 		return(
@@ -113,10 +108,7 @@ export default function Login(){
 					{ (error.message) ? <div className="alert alert-error">{error.message}</div>  : <span></span>}
 					<Loader loader={loader} />			
 				</div>
-				
-			
 			</div>
 		</>
-
 	)
 }

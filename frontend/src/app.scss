@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import "~bootstrap/scss/bootstrap";
+
+$cor1: #0a3d62;
 
 *{
 	box-sizing: border-box;
@@ -6,7 +9,7 @@
 html, body{
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	background-color: #dfe6e9;
+	background-color: rgb(255, 255, 255);
 }
 
 textarea:hover, 
@@ -35,10 +38,12 @@ label:focus,
 	bottom: 0;
 }
 .navbar-dark{
-  background: #4a5f6b !important
+  background: $cor1 !important
 }
+
 .wrapper{
 	padding: 0px 0 30px 0;
+	min-height: 100vh;
 }
 .input{
     border: 0;
